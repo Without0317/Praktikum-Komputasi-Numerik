@@ -42,6 +42,10 @@ void regulafalsi(const vector<double>& koefisien, int derajat, double a, double 
 - membuat function regula falsi
 - jika `f(a) x f(b) >= 0` maka tidak ada akar akar persamaan dalam rentang tersebut karena salah satu syarat regula falsi adalah `f(a) x f(b) < 0`
 ```cpp
+ gambarGrafikHorizontal(a, b, koefisien, derajat);
+```
+- memanggil fungsi gambarGrafikHorizontal.
+```cpp
  double c = a;
     int iterasi = 0;
     cout << "\nIterasi ke- |      c      |     f(c)    " << endl;
@@ -85,6 +89,51 @@ void regulafalsi(const vector<double>& koefisien, int derajat, double a, double 
 - Menginisialisasikan batas atas dan batas bawahnya setelah pengoperasian c
 - apabila iterasi sudah lebih dari 1000 berarti konvergensi akar persamaan berlangsung lambat
 
+## main()
+```cpp
+int derajat;
+    cout << "Mencari akar akar persamaan menggunakan metode Regula Falsi\n";
+    cout << "Masukkan pangkat tertinggi : ";
+    cin >> derajat;
+```
+```cpp
+ if (derajat > 100 || derajat < 0) {
+        if (derajat > 100) {
+            cout << "derajat yang anda masukkan melebihi kapasitas";
+        } else if (derajat < 0) {
+            cout << "derajat yang anda masukkan tidak valid";
+        }
+        return 0;
+    }
+```
+- jika derajat lebih dari 100 atau kurang dari nol maka derajat akan melebihi kapasitas
+- jika derajat < 0 maka derajat yang dimasukkan tidak valid
+``` cpp
+vector<double> koefisien(derajat + 1);
+    for (int i = 0; i <= derajat; i++) {
+        cout << "masukkan koefisien x^" << i << ": ";
+        cin >> koefisien[i];
+    }
+```
+- menggunakan vector agar size nya lebih dinamis
+- looping untuk memasukkan koefisien variabel x, x^2,dst.
+- menginput koefisien
+
+```cpp
+double a, b, toleransi;
+    cout << "Masukkan batas bawah (a) : ";
+    cin >> a;
+    cout << "Masukkan batas atas (b)  : ";
+    cin >> b;
+    cout << "Masukkan toleransi error : ";
+    cin >> toleransi;
+```
+- menginputkan batas atas(a) dan batas bawah(b)
+- menginputkan toleransi
+```cpp
+ regulafalsi(koefisien, derajat, a, b, toleransi);
+```
+- memanggil fungsi Regula Falsi
 
 ## Full Code
 ```cpp
