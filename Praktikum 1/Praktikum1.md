@@ -8,7 +8,7 @@
 #include <string>
 ```
 ## f(x) persamaan 
-```
+```cpp
 double f(double x, const vector<double>& koefisien, int derajat) {
     double hasil = 0;
     for (int i = 0; i <= derajat; i++) {
@@ -20,7 +20,7 @@ double f(double x, const vector<double>& koefisien, int derajat) {
 - sebagai function untuk menghitung batas atas f(a), batas bawah f(b), dan persamaan yang diinputkan oleh pengguna
 
 ## Menggambarkan grafik
-```
+```cpp
 void gambarGrafikHorizontal(double a, double b, const vector<double>& koefisien, int derajat) {
     const int LEBAR = 60;  // Lebar grafik (Sumbu X)
     const int TINGGI = 20; // Tinggi grafik (Sumbu Y)
@@ -32,7 +32,7 @@ void gambarGrafikHorizontal(double a, double b, const vector<double>& koefisien,
 
 
 ## Metode Regula Falsi
-```
+```cpp
 void regulafalsi(const vector<double>& koefisien, int derajat, double a, double b, double toleransi) {
     if (f(a, koefisien, derajat) * f(b, koefisien, derajat) >= 0) {
         cout << "tidak ada akar akar persamaan dalam rentang " << a << " dan " << b << "\n";
@@ -41,7 +41,7 @@ void regulafalsi(const vector<double>& koefisien, int derajat, double a, double 
 ```
 - membuat function regula falsi
 - jika `f(a) x f(b) >= 0` maka tidak ada akar akar persamaan dalam rentang tersebut karena salah satu syarat regula falsi adalah `f(a) x f(b) < 0`
-```
+```cpp
  double c = a;
     int iterasi = 0;
     cout << "\nIterasi ke- |      c      |     f(c)    " << endl;
@@ -50,7 +50,7 @@ void regulafalsi(const vector<double>& koefisien, int derajat, double a, double 
 - menginisialisasikan c
 - mencetak iterasi numerik dari proses Regula Falsi
 
-```
+```cpp
  while (true) {
         double fa = f(a, koefisien, derajat);
         double fb = f(b, koefisien, derajat);
@@ -87,7 +87,8 @@ void regulafalsi(const vector<double>& koefisien, int derajat, double a, double 
 
 
 ## Full Code
-```#include <iostream>
+```cpp
+#include <iostream>
 #include <vector>
 #include <cmath>
 #include <iomanip>
