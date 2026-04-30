@@ -356,4 +356,165 @@ int main() {
 
 
 
-# PPT 3
+# PPT 3 Metode Sacant
+## A. Library
+```cpp
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstdio>
+```
+
+## B. f(x) persamaan 
+```cpp
+class KalkulatorSecant {
+private:
+    double fungsi(double x) {
+        return exp(-x) - x;
+    }
+```
+- persamaan yang dicari akarnya: f(x) = e^-x -x
+- Struktur Kelas ```KalkulatorSecant``` membungkus logika perhitungan Metode Secant agar lebih terstruktur dan modular
+
+## C. Bagian Metode Secant (eksekusi)
+``` cpp
+public:
+    void eksekusi(double x_lama, double x_sekarang, double tol, int limit) {
+```
+- Mengecek pembagian nol
+- ```Rumus Secant```: menghitung nilai tebakan baru menggunakan persamaan <img width="874" height="258" alt="image" src="https://github.com/user-attachments/assets/0c1ff485-d3da-486f-89bb-772460ac563a" />
+- jika selisih tebakan baru lebih kecil dari toleransi (```tol```), program akan berhenti dan menampilkan hasil akhir
+
+## D. Tabel Konvergensi
+``` cpp
+cout << "\n[ Tabel Konvergensi ]" << endl;
+        cout << "---------------------------------------------" << endl;
+        cout << "Iter |      x_n      |     f(x_n)    " << endl;
+        cout << "---------------------------------------------" << endl;
+
+        for (int n = 1; n <= limit; ++n) {
+            double f_lama = fungsi(x_lama);
+            double f_sekarang = fungsi(x_sekarang);
+
+            if (abs(f_sekarang - f_lama) < 1e-12) {
+                cout << ">> Galat: Slope terlalu datar." << endl;
+                return;
+            }
+
+            x_baru = x_sekarang - (f_sekarang * (x_sekarang - x_lama) / (f_sekarang - f_lama));
+```
+- Menggambarkan perhitungan secara numerik
+``` cpp
+ cout << setw(4) << n << " | " 
+                 << setw(13) << fixed << setprecision(7) << x_baru << " | "
+                 << setw(13) << scientific << setprecision(4) << fungsi(x_baru) << endl;
+```
+- Menampilkan data iterasi ke dalam baris tabel
+``` cpp
+if (abs(x_baru - x_sekarang) < tol) {
+                cout << "---------------------------------------------" << endl;
+                printf("Hasil Akhir (Root): %.8f\n", x_baru);
+                return;
+            }
+
+            x_lama = x_sekarang;
+            x_sekarang = x_baru;
+        }
+        cout << ">> Peringatan: Batas iterasi tercapai." << endl;
+    }
+};
+```
+- Kriteria berhenti
+
+## E. main()
+``` cpp
+int main() {
+    KalkulatorSecant solver;
+    double a, b, t;
+    int i;
+
+    // Instruksi singkat dan padat
+    printf("masukkan tebakan awal x0 dan x1: ");
+    scanf("%lf %lf", &a, &b);
+
+    printf("masukkan toleransi dan max iterasi: ");
+    scanf("%lf %d", &t, &i);
+
+    solver.eksekusi(a, b, t, i);
+
+    return 0;
+}
+```
+- Fungsi ini meminta nilai niput dari pengguna dan kemudian memanggil fungsi ```eksekusi``` dari kelas ```KalkulatorSecant```.
+
+## Full Code
+``` cpp
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstdio>
+
+using namespace std;
+
+class KalkulatorSecant {
+private:
+    double fungsi(double x) {
+        return exp(-x) - x;
+    }
+
+public:
+    void eksekusi(double x_lama, double x_sekarang, double tol, int limit) {
+        double x_baru;
+        
+        cout << "\n[ Tabel Konvergensi ]" << endl;
+        cout << "---------------------------------------------" << endl;
+        cout << "Iter |      x_n      |     f(x_n)    " << endl;
+        cout << "---------------------------------------------" << endl;
+
+        for (int n = 1; n <= limit; ++n) {
+            double f_lama = fungsi(x_lama);
+            double f_sekarang = fungsi(x_sekarang);
+
+            if (abs(f_sekarang - f_lama) < 1e-12) {
+                cout << ">> Galat: Slope terlalu datar." << endl;
+                return;
+            }
+
+            x_baru = x_sekarang - (f_sekarang * (x_sekarang - x_lama) / (f_sekarang - f_lama));
+
+            cout << setw(4) << n << " | " 
+                 << setw(13) << fixed << setprecision(7) << x_baru << " | "
+                 << setw(13) << scientific << setprecision(4) << fungsi(x_baru) << endl;
+
+            if (abs(x_baru - x_sekarang) < tol) {
+                cout << "---------------------------------------------" << endl;
+                printf("Hasil Akhir (Root): %.8f\n", x_baru);
+                return;
+            }
+
+            x_lama = x_sekarang;
+            x_sekarang = x_baru;
+        }
+        cout << ">> Peringatan: Batas iterasi tercapai." << endl;
+    }
+};
+
+int main() {
+    KalkulatorSecant solver;
+    double a, b, t;
+    int i;
+
+    printf("masukkan tebakan awal x0 dan x1: ");
+    scanf("%lf %lf", &a, &b);
+
+    printf("masukkan toleransi dan max iterasi: ");
+    scanf("%lf %d", &t, &i);
+
+    solver.eksekusi(a, b, t, i);
+
+    return 0;
+}
+```
+
+## F. Hasil Screenshot
+<img width="688" height="201" alt="image" src="https://github.com/user-attachments/assets/ad9d6ddf-63f1-436c-82e8-3a6b16a8b325" />
