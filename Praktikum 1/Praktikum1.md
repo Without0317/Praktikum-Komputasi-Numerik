@@ -352,6 +352,8 @@ int main() {
 }
 ```
 ## F. Hasil Screenshoot
+<img width="1257" height="1026" alt="image" src="https://github.com/user-attachments/assets/4fb5ca42-ea90-4cb0-b2be-583173484b10" />
+
 
 
 #PPT 3
