@@ -1,7 +1,7 @@
 # PPT 2 Regula Falsi
 
 ## Library
-```
+```cpp
 #include <vector>
 #include <cmath>
 #include <iomanip>
