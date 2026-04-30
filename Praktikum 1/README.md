@@ -356,7 +356,7 @@ int main() {
 
 
 
-# PPT 3 Metode Sacant
+# PPT 3 Metode Secant
 ## A. Library
 ```cpp
 #include <iostream>
