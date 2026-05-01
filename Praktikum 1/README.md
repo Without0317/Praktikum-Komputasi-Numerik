@@ -433,7 +433,6 @@ int main() {
     double a, b, t;
     int i;
 
-    // Instruksi singkat dan padat
     printf("masukkan tebakan awal x0 dan x1: ");
     scanf("%lf %lf", &a, &b);
 
